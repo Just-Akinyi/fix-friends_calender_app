@@ -14,7 +14,7 @@ class Event(db.Model):
     updated_at = db.Column(db.DateTime(), onupdate = datetime.utcnow)
     user_id = db.column(db.Integer(), db.models.ForeignKey('user.id'))
     
-    # user = db.relationship('User',backref = 'events', lazy = True)
+
     
     
     def __repr__(self):
