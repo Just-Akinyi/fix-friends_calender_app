@@ -1,7 +1,7 @@
 from flask import Flask
 from flask_restx import Api
-from .auth.views import auth_namespace
-from .event.views import event_namespace
+from .auth.authentication import auth_namespace
+from .users.user import event_namespace
 from .config.config import config_dict
 
 
