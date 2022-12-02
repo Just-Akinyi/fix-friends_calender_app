@@ -2,7 +2,7 @@ from flask_restx import Namespace, Resource
 
 
 
-event_namespace = Namespace('user', description ='namespace for user\'s event ' )
+event_namespace = Namespace('Event', description ='namespace for user\'s event ' )
 
 
 @event_namespace.route('/event')
