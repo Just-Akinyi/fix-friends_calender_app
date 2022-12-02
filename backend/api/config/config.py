@@ -9,10 +9,11 @@ class Config:
     SQLALCHEMY_TRACK_MODIFICATIONS= False
     
     
+    
 class DevConfig(Config):
     DEBUG = config('DEBUG', cast = bool)
     SQLALCHEMY_ECHO=True
-  
+    SQLALCHEMY_DATABASE_URI= 'sqlite:///'+os.path.join(BASE_DIR, 'database.db')
     
 class TestConfig(Config):
     pass
