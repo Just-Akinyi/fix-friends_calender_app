@@ -1,5 +1,5 @@
 #!/bin/sh
-'''exec' "/mnt/c/Users/DELL PC/desktop/portfolio proj/fix-friends_calender_app/backend/my_env/bin/python3" "$0" "$@"
+'''exec' "/mnt/c/Users/DELL PC/desktop/alx proj/fix-friends_calender_app/backend/my_env/bin/python3" "$0" "$@"
 ' '''
 # -*- coding: utf-8 -*-
 import re
