@@ -37,7 +37,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="/mnt/c/Users/DELL PC/desktop/portfolio proj/fix-friends_calender_app/backend/my_env"
+VIRTUAL_ENV="/mnt/c/Users/DELL PC/desktop/alx proj/fix-friends_calender_app/backend/my_env"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"
