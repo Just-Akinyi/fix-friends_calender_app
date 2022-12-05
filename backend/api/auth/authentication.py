@@ -3,7 +3,7 @@ from flask import request
 from ..models.users import User 
 from werkzeug.security import generate_password_hash, check_password_hash
 from http import HTTPStatus
-from flask_jwt_extended import create_access_token, create_refresh_token
+from flask_jwt_extended import (create_access_token, create_refresh_token, jwt_required, get_jwt_identity)
 
 
 
@@ -99,5 +99,16 @@ class Login(Resource):
             }
             
             return response, HTTPStatus.OK    
+        
+@auth_namespace.route('/refresh')
+class Refresh(Resource):
     
+    @jwt_required(refresh=True)
+    def post(self):
+        
+       username = get_jwt_identity()
+       access_token = create_access_token(identity = username)
+       
+       return {'access_token':access_token}, HTTPStatus.OK
+   
 
