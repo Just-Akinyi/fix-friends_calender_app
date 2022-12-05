@@ -9,13 +9,11 @@ class User(db.Model):
     __tablename__ = 'users'
     id = db.Column(db.Integer(), primary_key = True, index = True)
     created_at = db.Column(db.DateTime(), default = datetime.utcnow)
-    updated_at = db.Column(db.DateTime(), default = datetime.utcnow, onupdate = datetime.utcnow)
     first_name = db.Column(db.String(80), nullable = False)
     last_name = db.Column(db.String(80), nullable = False)
     username = db.Column(db.String(45), nullable = False, unique = True)
     email = db.Column(db.String(60),nullable = False, unique= True)
     password_hash = db.Column(db.String(), nullable= False)
-    
    # event = db.relationship('Event', backref = 'owner', lazy = True)
 
     def __init__(self, first_name, last_name, username, email, password_hash):
