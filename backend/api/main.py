@@ -4,8 +4,8 @@ from .auth.authentication import auth_namespace
 from .event.event import event_namespace
 from .config.config import config_dict
 from .utils.database import db
-from .model.events import Event
-from .model.users import User
+from .models.events import Event
+from .models.users import User
 from flask_migrate import Migrate
 
 

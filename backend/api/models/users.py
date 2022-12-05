@@ -10,13 +10,13 @@ class User(db.Model):
     id = db.Column(db.Integer(), primary_key = True, index = True)
     created_at = db.Column(db.DateTime(), default = datetime.utcnow)
     updated_at = db.Column(db.DateTime(), default = datetime.utcnow, onupdate = datetime.utcnow)
-    first_name = db.Column(db.String(50), nullable = False)
-    last_name = db.Column(db.String(50), nullable = False)
+    first_name = db.Column(db.String(80), nullable = False)
+    last_name = db.Column(db.String(80), nullable = False)
     username = db.Column(db.String(45), nullable = False, unique = True)
     email = db.Column(db.String(60),nullable = False, unique= True)
     password_hash = db.Column(db.String(), nullable= False)
-
-    # event = db.relationship('Event', backref = 'owner', lazy = True)
+    
+   # event = db.relationship('Event', backref = 'owner', lazy = True)
 
     def __init__(self, first_name, last_name, username, email, password_hash):
         self.first_name = first_name
@@ -25,7 +25,7 @@ class User(db.Model):
         self.email = email
         self.password_hash = password_hash
 
-    def create(self):
+    def save(self):
         db.session.add(self)
         db.session.commit()
         return self
@@ -60,3 +60,5 @@ class UserSchema(SQLAlchemySchema):
     id = auto_field()
     username = auto_field()
     email = auto_field()
+    first_name = auto_field()
+    last_name = auto_field()

@@ -1,6 +1,6 @@
 from flask_restx import Namespace, Resource, fields
 from flask import request
-from ..model.users import User 
+from ..models.users import User 
 from werkzeug.security import generate_password_hash, check_password_hash
 from http import HTTPStatus
 
@@ -13,7 +13,7 @@ auth_namespace = Namespace('auth', description ='Namespace for Authentication' )
 
 signup_model = auth_namespace.model(
     
-    'signup', {
+    'User', {
         'id':fields.Integer(),
         'firstname':fields.String(required = True, description = 'Firstname'),
         'lastname':fields.String(required = True, description = 'Lastname'),
@@ -28,6 +28,7 @@ signup_model = auth_namespace.model(
 @auth_namespace.route('/signup')
 class SignUp(Resource):
     @auth_namespace.expect(signup_model)
+    @auth_namespace.marshal_with(signup_model)
     def post(self):
         '''
         Create a new user account
@@ -36,19 +37,20 @@ class SignUp(Resource):
         data = request.get_json()
         
         new_user = User(
-            firstname= data.get('firstname'),
+            first_name= data.get('firstname'),
+            last_name= data.get('lastname'),
             username = data.get('username'),
             email = data.get('email'),
             password_hash = generate_password_hash(data.get('password'))
         )
         
-        new_user.save()
+        new_user.create()
         return new_user, HTTPStatus.CREATED 
     
-        
-        
-        
     
+    
+      
+
     
 @auth_namespace.route('/login')
 class Login(Resource):
@@ -61,3 +63,4 @@ class Login(Resource):
         pass
     
     
+
