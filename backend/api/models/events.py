@@ -13,8 +13,8 @@ class Event(db.Model):
     description = db.Column(db.String(), nullable = False)
     location = db.Column(db.String(), nullable = False)
     user_id = db.Column(db.Integer(), db.ForeignKey('users.id'))
-    created_at = db.Column(db.DateTime())
-    updated_at = db.Column(db.DateTime())
+    created_at = db.Column(db.DateTime(),default = datetime.utcnow)
+    updated_at = db.Column(db.DateTime(),onupdate = datetime.utcnow)
     
 
     
