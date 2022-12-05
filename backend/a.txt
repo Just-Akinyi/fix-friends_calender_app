@@ -1,31 +1,12 @@
-from ..utils.database import db
-from datetime import datetime
-from marshmallow_sqlalchemy import SQLAlchemySchema, auto_field
-from passlib.hash import pbkdf2_sha256 as sha256
 
-
-class User(db.Model):
-
-    __tablename__ = 'users'
-    id = db.Column(db.Integer(), primary_key = True, index = True)
-    created_at = db.Column(db.DateTime(), default = datetime.utcnow)
-    updated_at = db.Column(db.DateTime(), default = datetime.utcnow, onupdate = datetime.utcnow)
-    first_name = db.Column(db.String(80), nullable = False)
-    last_name = db.Column(db.String(80), nullable = False)
-    username = db.Column(db.String(45), nullable = False, unique = True)
-    email = db.Column(db.String(60),nullable = False, unique= True)
-    password_hash = db.Column(db.String(), nullable= False)
-    
-   # event = db.relationship('Event', backref = 'owner', lazy = True)
-
-    def __init__(self, first_name, last_name, username, email, password_hash):
+   def __init__(self, first_name, last_name, username, email, password_hash):
         self.first_name = first_name
         self.last_name = last_name
         self.username = username
         self.email = email
         self.password_hash = password_hash
 
-    def save(self):
+    def create(self):
         db.session.add(self)
         db.session.commit()
         return self
@@ -62,3 +43,4 @@ class UserSchema(SQLAlchemySchema):
     email = auto_field()
     first_name = auto_field()
     last_name = auto_field()
+    

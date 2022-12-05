@@ -13,7 +13,7 @@ auth_namespace = Namespace('auth', description ='Namespace for Authentication' )
 
 signup_model = auth_namespace.model(
     
-    'signup', {
+    'User', {
         'id':fields.Integer(),
         'firstname':fields.String(required = True, description = 'Firstname'),
         'lastname':fields.String(required = True, description = 'Lastname'),
@@ -44,13 +44,13 @@ class SignUp(Resource):
             password_hash = generate_password_hash(data.get('password'))
         )
         
-        new_user.save()
+        new_user.create()
         return new_user, HTTPStatus.CREATED 
     
-        
-        
-        
     
+    
+      
+
     
 @auth_namespace.route('/login')
 class Login(Resource):
@@ -63,3 +63,4 @@ class Login(Resource):
         pass
     
     
+
