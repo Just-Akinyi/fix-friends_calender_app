@@ -24,7 +24,7 @@ class Events(Resource):
             return make_response(jsonify({'error': 'Invalid input'}), 422)
 
 
-@event_namespace.route('/events/<int:event_id>', strict_slashes=False)
+@event_namespace.route('/event/<int:event_id>', strict_slashes=False)
 class GetUpdateDelete(Resource):
 
     def get(self, event_id):
