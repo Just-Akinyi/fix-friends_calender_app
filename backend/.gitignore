@@ -1,4 +1,6 @@
 my_env/
+env/
+
 .env 
 
 # Created by https://www.toptal.com/developers/gitignore/api/python,osx,visualstudiocode,flask

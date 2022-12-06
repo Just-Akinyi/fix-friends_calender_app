@@ -62,3 +62,7 @@ class UserSchema(SQLAlchemySchema):
     email = auto_field()
     first_name = auto_field()
     last_name = auto_field()
+
+
+
+    
