@@ -8,6 +8,7 @@ from .models.events import Event
 from .models.users import User
 from flask_migrate import Migrate
 from flask_jwt_extended import JWTManager
+from werkzeug.exceptions import NotFound, MethodNotAllowed
 
 
 
@@ -25,6 +26,14 @@ def create_app(config = config_dict['dev']):
     
     api.add_namespace(auth_namespace)
     api.add_namespace(event_namespace)
+    
+    api.errorhandler(NotFound)
+    def notfound(error):
+        return({'error':'Not found'},404)
+    
+    api.errorhandler(MethodNotAllowed)
+    def methodnotallowed(error):
+        return({'error':'Method not allowed'},405)
     
     @app.shell_context_processor  
     def make_shell_context():
