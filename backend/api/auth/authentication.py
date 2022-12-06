@@ -118,16 +118,23 @@ class Refresh(Resource):
        
        return {'access_token':access_token}, HTTPStatus.OK
     
-@auth_namespace.route()
-class ResetPassword:
+@auth_namespace.route('/forgot-password')
+class ForgotPassword:
     @auth_namespace.expect(email_model)
     def post(self):
         data = requests.get_json()
         get_email = data['email']
-        users_email = User.query.filter_by(email=get_email).first()
+        user = User.query.filter_by(email=get_email).first()
 
-        if users_email: 
-            send_reset_mail(email)
-            return f"an has been sent to {users_email}"    
+        if user: 
+            send_reset_mail(user.email)
+            return f"password reset has been sent to {get_email}", HTTPStatus.OK    
     
-
+        return f"email {get_email} does not exist in our database", HTTPStatus.NOT_FOUND
+@auth_namespace.route('/reset-password')
+class ResetPassword:
+    @auth_namespace.expect(password_model)
+    def patch(self, email):
+        pass 
+        
+        
