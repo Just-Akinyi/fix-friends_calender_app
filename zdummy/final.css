@@ -1,0 +1,46 @@
+*{
+    background-image: url('../images/bg.jpeg');
+}
+.container {
+    height: 100vh;
+    width: 100%;
+    /* background-image: url(images/bg.png); */
+    background-position: center;
+    background-size: cover;
+    padding-right: 3%;
+    padding-left: 5%;
+    box-sizing: border-box;
+    position: relative;
+}
+.header {
+    width: 100%;
+    height: 15vh;
+    margin: auto;
+    display: flex;
+    align-items: center;
+}
+.logo {
+    width: 80px;
+    margin-top: 10px;
+    cursor: pointer;
+}
+nav {
+    flex: 1;
+    padding-left: 450px;
+}
+nav ul li {
+    display: inline-block;
+    list-style: none;
+    margin: 0 15px;
+}
+nav ul li a {
+    text-decoration: none;
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+    text-transform: uppercase;
+    font-size: 15px;
+    font-weight: 600;
+}
+.calendar{
+    max-width: ;
+}
